@@ -1,2 +1,2 @@
 # SynergyAPI
- An API for Enter the Gungeon that allows easily building synergies.
+ An API that allows you to easily create custom synergies.
