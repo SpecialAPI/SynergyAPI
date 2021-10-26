@@ -60,7 +60,7 @@ namespace SynergyAPI
             //  when the owner shoots. the mimic guns will shoot for 2 seconds and then will have a cooldown of 4 seconds. they will make lower case r's "MIMIC" sound when they begin shooting, they will make the "CHEST" sound every shoot and they
             //  will make the unused "WOOD" sound after finishing shooting.
             SynergyBuilder.CreateSynergy("Test Hovering Gun Synergy", new List<string> { "ring_of_chest_friendship", "ring_of_mimic_friendship" });
-            (Gungeon.Game.Items["ring_of_chest_friendship"] as PassiveItem).AddHoveringGunSynergyProcessor("Test Hovering Gun Synergy", Gungeon.Game.Items["734"].PickupObjectId, false, new List<int>(), HoveringGunController.HoverPosition.CIRCULATE,
+            (Gungeon.Game.Items["ring_of_chest_friendship"] as PassiveItem).AddHoveringGunSynergyProcessor("Test Hovering Gun Synergy", Gungeon.Game.Items["mimic_gun"].PickupObjectId, false, new List<int>(), HoveringGunController.HoverPosition.CIRCULATE,
                 HoveringGunController.AimType.NEAREST_ENEMY, HoveringGunController.FireType.ON_FIRED_GUN, 4f, 2f, false, "Play_WPN_LowerCaseR_Chest_Mimic_01", "Play_WPN_LowerCaseR_Chest_Chest_01", "Play_WPN_LowerCaseR_Chest_Wood_01", 
                 HoveringGunSynergyProcessor.TriggerStyle.CONSTANT, 3, -1f, false, 0f);
         }
