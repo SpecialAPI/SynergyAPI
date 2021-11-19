@@ -63,6 +63,9 @@ namespace SynergyAPI
             (Gungeon.Game.Items["ring_of_chest_friendship"] as PassiveItem).AddHoveringGunSynergyProcessor("Test Hovering Gun Synergy", Gungeon.Game.Items["mimic_gun"].PickupObjectId, false, new List<int>(), HoveringGunController.HoverPosition.CIRCULATE,
                 HoveringGunController.AimType.NEAREST_ENEMY, HoveringGunController.FireType.ON_FIRED_GUN, 4f, 2f, false, "Play_WPN_LowerCaseR_Chest_Mimic_01", "Play_WPN_LowerCaseR_Chest_Chest_01", "Play_WPN_LowerCaseR_Chest_Wood_01", 
                 HoveringGunSynergyProcessor.TriggerStyle.CONSTANT, 3, -1f, false, 0f);
+
+            //adds the armor synthesizer to the "Future Gangster" synergy.
+            Gungeon.Game.Items["armor_synthesizer"].AddItemToSynergy(CustomSynergyType.LASER_THOMPSON);
         }
 
         public override void Exit()
