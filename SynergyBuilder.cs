@@ -559,12 +559,15 @@ namespace SynergyAPI
         /// <returns>The changed <paramref name="original"/> that can be used for checking synergies with <see cref="PlayerHasActiveSynergy(PlayerController, string)"/>.</returns>
         public static string FixSynergyAPISynergyName(string original)
         {
-            string key = "#" + original.ToUpper().Replace(" ", "_").Replace("'", "").Replace(",", "").Replace(".", "");
-            foreach(var s in synergies)
+            if(synergies != null && original != null)
             {
-                if(s.NameKey == key)
+                string key = "#" + original.ToUpper().Replace(" ", "_").Replace("'", "").Replace(",", "").Replace(".", "");
+                foreach (var s in synergies)
                 {
-                    return key;
+                    if (s.NameKey == key)
+                    {
+                        return key;
+                    }
                 }
             }
             return original;
@@ -590,6 +593,14 @@ namespace SynergyAPI
         /// <returns><see langword="true"/> if any matching active synergies were found, <see langword="false"/> otherwise.</returns>
         public static bool PlayerHasActiveSynergy(this PlayerController player, string synergyNameToCheck)
         {
+            if(player == null)
+            {
+                return false;
+            }
+            if(synergyNameToCheck == null)
+            {
+                return false;
+            }
             string actualSynergyName = FixSynergyAPISynergyName(synergyNameToCheck);
             foreach (int index in player.ActiveExtraSynergies)
             {
@@ -610,6 +621,11 @@ namespace SynergyAPI
         /// <returns><see langword="true"/> if any matching active synergies were found, <see langword="false"/> otherwise.</returns>
         public static bool AnyoneHasActiveSynergy(string synergy, out int count)
         {
+            if(synergy == null)
+            {
+                count = 0;
+                return false;
+            }
             string actualSynergy = FixSynergyAPISynergyName(synergy);
             count = 0;
             for (int i = 0; i < GameManager.Instance.AllPlayers.Length; i++)
@@ -629,6 +645,10 @@ namespace SynergyAPI
         /// <returns><see langword="true"/> if any matching active synergies were found, <see langword="false"/> otherwise.</returns>
         public static bool AnyoneHasActiveSynergy(string synergy)
         {
+            if (synergy == null)
+            {
+                return false;
+            }
             return AnyoneHasActiveSynergy(synergy, out _);
         }
 
@@ -639,6 +659,10 @@ namespace SynergyAPI
         /// <returns>The count of <paramref name="player"/>'s synergies that are named <paramref name="synergy"/>.</returns>
         public static int CountAllActiveMatchingSynergies(string synergy)
         {
+            if (synergy == null)
+            {
+                return 0;
+            }
             AnyoneHasActiveSynergy(synergy, out var num);
             return num;
         }
@@ -652,6 +676,10 @@ namespace SynergyAPI
         public static int CountActiveBonusSynergies(this PlayerController player, string synergy)
         {
             if (player == null)
+            {
+                return 0;
+            }
+            if(synergy == null)
             {
                 return 0;
             }
